@@ -2,17 +2,18 @@ package com.example.bhaveshpatil.niwaraa;
 
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.bhaveshpatil.niwaraa.activity.PostPropertyUser;
 import com.example.bhaveshpatil.niwaraa.fragments.HomePage;
+import com.example.bhaveshpatil.niwaraa.fragments.MenuFragment;
 import com.example.bhaveshpatil.niwaraa.fragments.ProfileFragment;
 
 
@@ -69,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_menu:
                     toolbar.setTitle("Menu");
-                   // fragment = new ProfileFragment();
-                  //  loadFragment(fragment);
+                     fragment = new MenuFragment();
+                     loadFragment(fragment);
                     return true;
             }
             return false;

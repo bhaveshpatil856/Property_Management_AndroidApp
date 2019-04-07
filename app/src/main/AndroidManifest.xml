@@ -40,7 +40,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCYs4q1rhXuJjaKxE8Fj9ff7HOR3Gfj-Uw" />
 
-        <activity android:name=".activity.Confirmation"></activity>
+        <activity android:name=".activity.Confirmation" />
+        <activity android:name=".activity.EMICalcutator"></activity>
     </application>
 
 </manifest>

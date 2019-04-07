@@ -4,20 +4,20 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +29,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bhaveshpatil.niwaraa.R;
-import com.example.bhaveshpatil.niwaraa.fragments.HomePage;
-import com.example.bhaveshpatil.niwaraa.fragments.ProfileFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -55,11 +53,15 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
     //   private PropertyDetailsRepo[] data;
     BottomNavigationView nav_contact;
 
+    ImageView imageView_main;
+
     MapView mapView_display;
 
     GoogleMap mGoogleMap;
 
     double Lat,Long;
+
+    String imagePath;
 
 
     @Override
@@ -169,7 +171,7 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 111);
         } else {
             logic();
-            }
+        }
     }
 
     private void logic() {
@@ -252,6 +254,11 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
                         email = property.getString("email").trim();
                         latitude=property.getString("Latitude").trim();
                         longitude=property.getString("Longitude").trim();
+                        String image_name=property.getString("image_name").trim();
+                        imagePath=property.getString("image_path").trim();
+
+                        Toast.makeText(DetailsPage.this, imagePath, Toast.LENGTH_SHORT).show();
+
                         //details.add(detailsRepo);
 
 
@@ -298,7 +305,7 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
         textView_bathrooms.setText(bathrooms);
         textView_balcony.setText(balcony);
         textView_furnishing.setText(furnishing);
-        textView_floor.setText(floorNo + "out of" + totalFloor);
+        textView_floor.setText(floorNo + " out of " + totalFloor);
         textView_possesion.setText(status);
         textView_parking.setText(parking);
         textView_condition.setText(propertyCondition);
@@ -307,6 +314,9 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
 
         Lat= Double.parseDouble(latitude);
         Long= Double.parseDouble(longitude);
+
+        //Glide.with(this).load(imagePath).into(imageView_main);
+
         MapSet();
 
 

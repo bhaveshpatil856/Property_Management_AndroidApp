@@ -11,6 +11,12 @@
     <string name="show_contact">Show Contact</string>
     <string name="enquiry">Enquire Now</string>
 
+    <string name="principal">Principal Amount ₹</string>
+    <string name="interest">Interest per year %</string>
+    <string name="duration">How many years</string>
+    <string name="emi">Emi per month ₹</string>
+    <string name="total">Total interest</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

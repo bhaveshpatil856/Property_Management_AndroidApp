@@ -133,7 +133,7 @@ public class PostPropertyLocation extends AppCompatActivity implements OnMapRead
 
         EnableRuntimePermissionToAccessCamera();
 
-//        MapSet();
+        MapSet();
 
         //next button
         button_net.setOnClickListener(new View.OnClickListener() {

@@ -1,23 +1,18 @@
 package com.example.bhaveshpatil.niwaraa.activity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bhaveshpatil.niwaraa.MainActivity;
 import com.example.bhaveshpatil.niwaraa.R;
-import com.example.bhaveshpatil.niwaraa.fragments.HomePage;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 
@@ -62,7 +57,7 @@ public class ContactDetails extends AppCompatActivity {
                     edit.putString("name",name);
                     edit.apply();
 
-                 //   upload();
+                    //   upload();
 
                     // create custom dialog box
                     final Dialog dialog= new Dialog(ContactDetails.this);
@@ -81,11 +76,11 @@ public class ContactDetails extends AppCompatActivity {
                         public void onClick(View v) {
 
 
-                         //   TextView text = (TextView) dialog.findViewById(R.id.textView_d1);
-                           // text.setText("Enter Otp & click Verify");
+                            //   TextView text = (TextView) dialog.findViewById(R.id.textView_d1);
+                            // text.setText("Enter Otp & click Verify");
 
-                          //  EditText editTextDialogUserInput= dialog.findViewById(R.id.editTextDialogUserInput);
-                          //editTextDialogUserInput.getText();
+                            //  EditText editTextDialogUserInput= dialog.findViewById(R.id.editTextDialogUserInput);
+                            //editTextDialogUserInput.getText();
 
                             upload();
 
