@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/baseline_home_black_24dp"
+        android:title="@string/nav_home"
+
+        />
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/baseline_message_black_24dp"
+
+        android:title="@string/nav_chat" />
+    <item
+        android:id="@+id/nav_addProperty"
+        android:icon="@drawable/baseline_add_black_24dp"
+        android:title="@string/nav_addProperties" />
+    <item
+        android:id="@+id/nav_notification"
+        android:icon="@drawable/baseline_notifications_active_black_24dp"
+        android:title="@string/nav_notify" />
+    <item
+        android:id="@+id/nav_menu"
+        android:icon="@drawable/baseline_menu_black_24dp"
+        android:title="@string/nav_menu"
+        />
+</menu>
