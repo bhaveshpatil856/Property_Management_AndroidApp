@@ -11,6 +11,15 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission-sdk-23 android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission-sdk-23 android:name="android.permission.READ_SMS" />
+    <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,11 +31,7 @@
         <activity android:name=".activity.RegisterPage" />
         <activity android:name=".activity.LoginPage" />
         <activity android:name=".activity.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.ListItem" />
         <activity android:name=".activity.DetailsPage" />
@@ -41,7 +46,19 @@
             android:value="AIzaSyCYs4q1rhXuJjaKxE8Fj9ff7HOR3Gfj-Uw" />
 
         <activity android:name=".activity.Confirmation" />
-        <activity android:name=".activity.EMICalcutator"></activity>
+        <activity android:name=".activity.EMICalcutator" />
+
+        <meta-data
+            android:name="instamojo.orderauth.url"
+            android:value="https://bhaveshpatil.000webhostapp.com/access_token.php" />
+
+        <activity android:name=".activity.StatusCheck">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

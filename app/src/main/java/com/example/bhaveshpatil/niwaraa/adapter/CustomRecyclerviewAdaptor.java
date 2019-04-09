@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.bhaveshpatil.niwaraa.R;
 import com.example.bhaveshpatil.niwaraa.activity.DetailsPage;
 import com.example.bhaveshpatil.niwaraa.model.PropertyListRepo;
@@ -45,6 +47,8 @@ public class CustomRecyclerviewAdaptor extends RecyclerView.Adapter<CustomRecycl
         holder.textView_name.setText(user.getProject());
         holder.textView_desc.setText( user.getCity());
         holder.textView_price.setText(user.getPrice());
+        Glide.with(holder.imageView_prop.getContext()).load(user.getImage_path()).into(holder.imageView_prop);
+
         //holder.duration.setText(user.getCourseDuration());
         //holder.description.setText(user.getCourseDetail());
         //to bind the image view we will use glide library
@@ -78,6 +82,7 @@ public class CustomRecyclerviewAdaptor extends RecyclerView.Adapter<CustomRecycl
         TextView textView_name;
         TextView textView_desc;
         TextView textView_price;
+        ImageView imageView_prop;
         LinearLayout parent;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -86,6 +91,7 @@ public class CustomRecyclerviewAdaptor extends RecyclerView.Adapter<CustomRecycl
             textView_name= itemView.findViewById(R.id.textView_name);
             textView_desc=itemView.findViewById(R.id.textView_desc);
             textView_price=itemView.findViewById(R.id.textView_price);
+            imageView_prop=itemView.findViewById(R.id.imageView_prop);
 
         }
     }

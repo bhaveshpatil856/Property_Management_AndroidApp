@@ -1,11 +1,10 @@
 package com.example.bhaveshpatil.niwaraa.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -69,6 +68,8 @@ public class ListItem extends AppCompatActivity {
                         propertyListRepo.setAddress(Property.getString("address"));
                         propertyListRepo.setPrice(Property.getString("price"));
                         propertyListRepo.setNumber(Property.getString("number"));
+                        propertyListRepo.setImage_name(Property.getString("image_name"));
+                        propertyListRepo.setImage_path(Property.getString("image_path"));
                         propertyList.add(propertyListRepo);
 
                     }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.DetailsPage"
+    android:gravity="bottom"
     android:orientation="vertical"
-    android:gravity="bottom">
+    tools:context=".activity.DetailsPage">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,34 +24,42 @@
             <ImageView
                 android:id="@+id/imageView_main"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content" />
+            <!--app:srcCompat="@drawable/one" -->
 
-                app:srcCompat="@drawable/one" />
 
             <TextView
                 android:id="@+id/TV_project"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="ABC"
-                android:textColor="@android:color/background_dark"
-                android:textSize="20sp" />
+                android:textColor="#000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/TV_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:paddingHorizontal="5dp"
+                android:text="TextView"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/TV_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:padding="5dp"
+                android:text="TextView"
+                android:textColor="#020"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
                 android:text="Property Details :"
                 android:textColor="#000"
                 android:textSize="18sp"
@@ -64,7 +72,7 @@
                 android:layout_margin="10dp"
                 android:elevation="10dp"
                 android:padding="5dp"
-                app:cardCornerRadius="3dp">
+                app:cardCornerRadius="10dp">
 
 
                 <LinearLayout
@@ -94,14 +102,16 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
                                 android:text="Covered Area"
-                                android:textColor="#000" />
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_coveredArea"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
 
@@ -120,14 +130,16 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
                                 android:text="Carpet Area"
-                                android:textColor="#000" />
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_carpetArea"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -154,14 +166,16 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
                                 android:text="Bedrooms"
-                                android:textColor="#000" />
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_bedrooms"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
 
@@ -180,14 +194,16 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
                                 android:text="Bathrooms"
-                                android:textColor="#000" />
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_bathrooms"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -214,14 +230,16 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
                                 android:text="Balcony"
-                                android:textColor="#000" />
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_balcony"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
 
@@ -240,14 +258,16 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
                                 android:text="Furnishing"
-                                android:textColor="#000" />
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_furnishing"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -274,14 +294,16 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
                                 android:text="Floor"
-                                android:textColor="#000" />
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_floor"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
 
@@ -299,15 +321,17 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
-                                android:text="Possesion"
-                                android:textColor="#000" />
+                                android:text="Construction Status"
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_possesion"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -334,14 +358,16 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
                                 android:text="Parking"
-                                android:textColor="#000" />
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_parking"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
 
@@ -360,14 +386,16 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_weight="1"
                                 android:text="Property Condition"
-                                android:textColor="#000" />
+                                android:textColor="#000"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/textView_codition"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textSize="20dp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -391,6 +419,10 @@
                 android:id="@+id/TV_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:baselineAligned="false"
+                android:padding="5dp"
+                android:textSize="18dp"
                 android:text="TextView" />
 
             <TextView
@@ -415,7 +447,10 @@
                     android:id="@+id/textView_amenities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="textview" />
+                    android:text="textview"
+                    android:textSize="18sp"
+                    android:padding="5dp"
+                    android:layout_margin="3dp"/>
 
 
             </android.support.v7.widget.CardView>
@@ -429,27 +464,42 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="10dp"
+                android:padding="5dp"
+                app:cardCornerRadius="3dp">
+
+
+
+
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView_display"
                 android:layout_width="match_parent"
                 android:layout_height="195dp" />
 
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Floor Plan :"
-                android:textColor="#000"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            </android.support.v7.widget.CardView>
 
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/one" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/textView23"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Floor Plan :"-->
+                <!--android:textColor="#000"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textStyle="bold" />-->
+
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="250dp"-->
+                <!--android:scaleType="fitXY"-->
+                <!--app:srcCompat="@drawable/one" />-->
 
 
         </LinearLayout>

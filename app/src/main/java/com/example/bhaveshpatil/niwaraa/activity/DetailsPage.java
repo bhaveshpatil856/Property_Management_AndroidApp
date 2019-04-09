@@ -2,9 +2,11 @@ package com.example.bhaveshpatil.niwaraa.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +47,10 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import instamojo.library.InstamojoPay;
+import instamojo.library.InstapayListener;
+
 
 public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -63,6 +70,10 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
 
     String imagePath;
 
+    int flag;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +90,9 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
 
 
     }
+
+
+
 
 
     private void cast() {
@@ -119,10 +133,11 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
                 case R.id.nav_enquire:
                     return true;
                 case R.id.nav_call:
+
                     call();
                     return true;
                 case R.id.nav_details:
-                    showContact();
+                    callInstamojoPay("tester@gmail.com", "7875432991", "20", "official", "buyername");
                     return true;
             }
             return false;
@@ -176,22 +191,32 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
 
     private void logic() {
 
-        //num = textView_number.getText().toString();
-        Intent intent = new Intent(Intent.ACTION_CALL);
 
-        intent.setData(Uri.parse("tel:" + number ));
+        callInstamojoPay("tester@gmail.com", "7875432991", "20", "official", "buyername");
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+        if (flag == 1) {
+            //num = textView_number.getText().toString();
+            Intent intent = new Intent(Intent.ACTION_CALL);
+
+            intent.setData(Uri.parse("tel:" + number));
+
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            startActivity(intent);
         }
-        startActivity(intent);
+        else {
+            callInstamojoPay("tester@gmail.com", "7875432991", "20", "official", "buyername");
+
+        }
+
     }
 
     @Override
@@ -315,10 +340,34 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
         Lat= Double.parseDouble(latitude);
         Long= Double.parseDouble(longitude);
 
-        //Glide.with(this).load(imagePath).into(imageView_main);
+        Toast.makeText(this, imagePath, Toast.LENGTH_SHORT).show();
+
+        String url= getIntent().getStringExtra("image");
+
+
+
+        //loadImage(url);
+
+      //  Glide.with(this).load(imagePath).into(imageView_main);
 
         MapSet();
 
+
+    }
+
+    private void loadImage(String url) {
+
+        Picasso.with(this).load(url).into(imageView_main, new com.squareup.picasso.Callback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
 
     }
 
@@ -357,6 +406,54 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
         mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
     }
+
+    private void callInstamojoPay(String email, String phone, String amount, String purpose, String buyername) {
+
+        final Activity activity = this;
+
+        InstamojoPay instamojoPay = new InstamojoPay();
+        IntentFilter filter = new IntentFilter("ai.devsupport.instamojo");
+        registerReceiver(instamojoPay, filter);
+        JSONObject pay = new JSONObject();
+        try {
+            pay.put("email", email);
+            pay.put("phone", phone);
+            pay.put("purpose", purpose);
+            pay.put("amount", amount);
+            pay.put("name", buyername);
+            pay.put("send_sms", true);
+            pay.put("send_email", true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        initListener();
+        instamojoPay.start(activity, pay, listener);
+    }
+
+    InstapayListener listener;
+
+
+    private void initListener() {
+        listener = new InstapayListener() {
+            @Override
+            public void onSuccess(String response) {
+                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG)
+                        .show();
+                flag=1;
+
+                showContact();
+            }
+
+            @Override
+            public void onFailure(int code, String reason) {
+                Toast.makeText(getApplicationContext(), "Failed: " + reason, Toast.LENGTH_LONG)
+                        .show();
+
+                flag=0;
+            }
+        };
+    }
+
 
 
 }

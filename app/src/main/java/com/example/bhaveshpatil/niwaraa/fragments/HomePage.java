@@ -108,6 +108,8 @@ public class HomePage extends Fragment {
                         propertyListRepo.setAddress(Property.getString("address"));
                         propertyListRepo.setPrice(Property.getString("price"));
                         propertyListRepo.setNumber(Property.getString("number"));
+                        propertyListRepo.setImage_name(Property.getString("image_name"));
+                        propertyListRepo.setImage_path(Property.getString("image_path"));
                         propertyList.add(propertyListRepo);
 
                     }
@@ -171,6 +173,8 @@ public class HomePage extends Fragment {
                         propertyListRepo.setAddress(Property.getString("address"));
                         propertyListRepo.setPrice(Property.getString("price"));
                         propertyListRepo.setNumber(Property.getString("number"));
+                        propertyListRepo.setImage_name(Property.getString("image_name"));
+                        propertyListRepo.setImage_path(Property.getString("image_path"));
                         propertyOwnList.add(propertyListRepo);
 
                     }

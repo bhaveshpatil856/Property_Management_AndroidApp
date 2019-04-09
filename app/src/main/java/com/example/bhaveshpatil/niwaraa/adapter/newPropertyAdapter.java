@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.bhaveshpatil.niwaraa.R;
 import com.example.bhaveshpatil.niwaraa.activity.DetailsPage;
 import com.example.bhaveshpatil.niwaraa.model.PropertyListRepo;
@@ -45,8 +47,9 @@ public class newPropertyAdapter extends RecyclerView.Adapter<newPropertyAdapter.
         holder.textView_proPrice.setText(user.getPrice());
         //holder.duration.setText(user.getCourseDuration());
         //holder.description.setText(user.getCourseDetail());
-        //to bind the image view we will use glide library
-        // Glide.with(holder.imguser.getContext()).load(user.getUrl()).into(holder.imguser);
+        //to bind the image view we will use glide
+        Glide.with(holder.imageView_top.getContext()).load(user.getImage_path()).into(holder.imageView_top);
+
         //setting up an onclick listener
 
        holder.CV_parent.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +69,10 @@ public class newPropertyAdapter extends RecyclerView.Adapter<newPropertyAdapter.
 
     @Override
     public int getItemCount() {
-        return 10;
+
+
+
+        return data.length ;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -74,6 +80,9 @@ public class newPropertyAdapter extends RecyclerView.Adapter<newPropertyAdapter.
         TextView textView_projectName;
         TextView textView_projectCity;
         TextView textView_proPrice;
+
+        ImageView imageView_top;
+
         LinearLayout CV_parent;
 
         public ViewHolder(View itemView) {
@@ -83,6 +92,9 @@ public class newPropertyAdapter extends RecyclerView.Adapter<newPropertyAdapter.
             textView_projectName= itemView.findViewById(R.id.textView_projectName);
             textView_projectCity=itemView.findViewById(R.id.textView_projectCity);
             textView_proPrice=itemView.findViewById(R.id.textView_proPrice);
+            imageView_top=itemView.findViewById(R.id.imageView_top);
+
+
         }
     }
 }

@@ -1,8 +1,11 @@
 package com.example.bhaveshpatil.niwaraa.activity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,7 +21,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bhaveshpatil.niwaraa.MainActivity;
 import com.example.bhaveshpatil.niwaraa.R;
-import com.example.bhaveshpatil.niwaraa.fragments.HomePage;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -83,18 +89,58 @@ public class LoginPage extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        if (response.contains("success"))
+                        if(response.contains("invalid user"))
                         {
-                            Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                            finish();
+                            Toast.makeText(LoginPage.this, "Invalid user! \n try again", Toast.LENGTH_SHORT).show();
                         }
+                        else {
 
-                        if (response.contains("invalid user"))
-                        {
-                            Toast.makeText(getApplicationContext(), "Invalid User! try again", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),LoginPage.class));
-                            finish();
+                            Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+
+                            Log.v("DATA", response);
+                            try {
+                                JSONObject jsonObjectS = new JSONObject(response);
+                                JSONArray jsonArray = jsonObjectS.getJSONArray("result");
+                                JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                                String id = jsonObject1.getString("id");
+                                //Toast.makeText(MainActivity.this, "the id is "+id, Toast.LENGTH_SHORT).show();
+                                String name = jsonObject1.getString("uname");
+                                String email = jsonObject1.getString("uemail");
+                                String password = jsonObject1.getString("upass");
+                                String contact = jsonObject1.getString("umobile");
+
+
+
+                                SharedPreferences shared = getSharedPreferences("Mypref", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = shared.edit();
+                                editor.putString("id",id);
+                                editor.putString("name",name);
+                                editor.putString("email",email);
+                                editor.putString("pass",password);
+                                editor.putString("contact",contact);
+                                editor.apply();
+
+                                // Intent login = new Intent(getApplicationContext(),Profilepage.class);
+                                //startActivity(login);
+                                //to prevent back click from user
+
+
+
+                                //now if the user logs in successfully we must store the result
+
+                                SharedPreferences setting = getSharedPreferences("Check_status", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor1 = setting.edit();
+                                editor1.putBoolean("hasLoggedIn",true);
+                                editor1.apply();
+
+
+
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
 
                     }
@@ -102,10 +148,11 @@ public class LoginPage extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "opps!", Toast.LENGTH_SHORT).show();
 
                     }
                 })
+
                 {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
