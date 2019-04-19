@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.bhaveshpatil.niwaraa.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -137,6 +138,7 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
                     call();
                     return true;
                 case R.id.nav_details:
+                    flag=2;
                     callInstamojoPay("tester@gmail.com", "7875432991", "20", "official", "buyername");
                     return true;
             }
@@ -191,31 +193,11 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
 
     private void logic() {
 
-
+flag=1;
         callInstamojoPay("tester@gmail.com", "7875432991", "20", "official", "buyername");
 
-        if (flag == 1) {
-            //num = textView_number.getText().toString();
-            Intent intent = new Intent(Intent.ACTION_CALL);
 
-            intent.setData(Uri.parse("tel:" + number));
 
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-            startActivity(intent);
-        }
-        else {
-            callInstamojoPay("tester@gmail.com", "7875432991", "20", "official", "buyername");
-
-        }
 
     }
 
@@ -282,7 +264,7 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
                         String image_name=property.getString("image_name").trim();
                         imagePath=property.getString("image_path").trim();
 
-                        Toast.makeText(DetailsPage.this, imagePath, Toast.LENGTH_SHORT).show();
+  //                      Toast.makeText(DetailsPage.this, imagePath, Toast.LENGTH_SHORT).show();
 
                         //details.add(detailsRepo);
 
@@ -322,7 +304,7 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
     private void setdata() {
 
         TV_project.setText(project);
-        TV_address.setText(address + "," + locality + "\n" + city);
+        TV_address.setText(  locality + "\n" + city + "\n" + address );
         TV_price.setText(price);
         textView_coveredArea.setText(coveredArea);
         textView_carpetArea.setText(carpetArea);
@@ -348,7 +330,7 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
 
         //loadImage(url);
 
-      //  Glide.with(this).load(imagePath).into(imageView_main);
+       Glide.with(getApplicationContext()).load("imagePath").into(imageView_main);
 
         MapSet();
 
@@ -439,9 +421,30 @@ public class DetailsPage extends AppCompatActivity implements OnMapReadyCallback
             public void onSuccess(String response) {
                 Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG)
                         .show();
-                flag=1;
 
-                showContact();
+                if (flag == 1) {
+                    //num = textView_number.getText().toString();
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+
+                    intent.setData(Uri.parse("tel:" + number));
+
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    startActivity(intent);
+                }else
+                if (flag==2)
+                {
+                    showContact();
+                }
+
             }
 
             @Override
