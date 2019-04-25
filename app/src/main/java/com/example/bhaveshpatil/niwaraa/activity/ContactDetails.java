@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,17 +14,32 @@ import android.widget.Toast;
 
 import com.example.bhaveshpatil.niwaraa.MainActivity;
 import com.example.bhaveshpatil.niwaraa.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 
 import java.net.MalformedURLException;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class ContactDetails extends AppCompatActivity {
 
     EditText editText_email,editText_contact,editText_name;
     Button button_generateOtp;
     String number;
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
+    FirebaseAuth auth;
+
+    String verificationCode,code;
+
+    EditText editTextDialogUserInput;
+
 
     public static String UPLOAD_URL = "https://bhaveshpatil.000webhostapp.com/uploadProperty.php";
 
@@ -37,6 +53,10 @@ public class ContactDetails extends AppCompatActivity {
         editText_contact=findViewById(R.id.editText_contact);
         editText_name=findViewById(R.id.editText_name);
         button_generateOtp=findViewById(R.id.button_generateOtp);
+
+
+        StartFirebaseLogin();
+
 
 
         //button for generate otp
@@ -57,6 +77,10 @@ public class ContactDetails extends AppCompatActivity {
                     edit.putString("name",name);
                     edit.apply();
 
+                    sendOTP();
+
+
+
                     //   upload();
 
                     // create custom dialog box
@@ -74,6 +98,12 @@ public class ContactDetails extends AppCompatActivity {
                     button_cnfrm.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+
+                            editTextDialogUserInput=findViewById(R.id.editTextDialogUserInput);
+
+
+                            verifyCode();
+
 
 
                             //   TextView text = (TextView) dialog.findViewById(R.id.textView_d1);
@@ -106,6 +136,28 @@ public class ContactDetails extends AppCompatActivity {
             }
 
         });
+
+    }
+
+    private void verifyCode() {
+
+        code=editTextDialogUserInput.getText().toString();
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, code);
+        SigninWithPhone(credential);
+
+    }
+
+    private void sendOTP() {
+
+        String phoneNumber=number;
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+               "+91" + phoneNumber,        // Phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                this,               // Activity (for callback binding)
+                mCallback);        // OnVerificationStateChangedCallbacks
+
 
     }
 
@@ -185,4 +237,43 @@ public class ContactDetails extends AppCompatActivity {
 
     }
 
+
+
+    private void StartFirebaseLogin() {
+        auth = FirebaseAuth.getInstance();
+        mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+                Toast.makeText(getApplicationContext(),"verification completed",Toast.LENGTH_SHORT).show();
+                upload();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+                Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                verificationCode = s;
+                Toast.makeText(getApplicationContext(),"Code sent",Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
+
+
+
+    protected void SigninWithPhone(PhoneAuthCredential credential) {
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Verified no.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(),"Incorrect OTP",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 }

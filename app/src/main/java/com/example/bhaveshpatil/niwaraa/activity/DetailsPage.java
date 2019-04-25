@@ -8,6 +8,8 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -46,6 +48,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -324,34 +330,32 @@ flag=1;
 
         Toast.makeText(this, imagePath, Toast.LENGTH_SHORT).show();
 
-        String url= getIntent().getStringExtra("image");
+        String url= imagePath;
 
 
 
-        //loadImage(url);
+//        loadImage(url);
 
-       Glide.with(getApplicationContext()).load("imagePath").into(imageView_main);
+      // Glide.with(getApplicationContext()).load("imagePath").into(imageView_main);
 
         MapSet();
 
 
     }
 
-    private void loadImage(String url) {
-
-        Picasso.with(this).load(url).into(imageView_main, new com.squareup.picasso.Callback() {
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
-
-    }
+//    private void loadImage(String url) {
+//
+//        try {
+//            ImageView i = (ImageView)findViewById(R.id.imageView_main);
+//            Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url).getContent());
+//            i.setImageBitmap(bitmap);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 
     private void MapSet() {

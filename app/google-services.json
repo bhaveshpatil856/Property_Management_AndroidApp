@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "477456322092",
-    "firebase_url": "https://niwaraa.firebaseio.com",
-    "project_id": "niwaraa",
-    "storage_bucket": "niwaraa.appspot.com"
+    "project_number": "666309150402",
+    "firebase_url": "https://niwaraa-25516.firebaseio.com",
+    "project_id": "niwaraa-25516",
+    "storage_bucket": "niwaraa-25516.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:477456322092:android:7138321ec979e8ea",
+        "mobilesdk_app_id": "1:666309150402:android:7138321ec979e8ea",
         "android_client_info": {
           "package_name": "com.example.bhaveshpatil.niwaraa"
         }
       },
       "oauth_client": [
         {
-          "client_id": "477456322092-mqutt9ml0tfh2s2cnr1a02tjv3mgrrps.apps.googleusercontent.com",
+          "client_id": "666309150402-maik6ooe64ri6c5cfg6i3vidqnuuf1d3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.bhaveshpatil.niwaraa",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "477456322092-e775bupprdlbn7a1ihvomv1mboghh8fo.apps.googleusercontent.com",
+          "client_id": "666309150402-f26lt5ipvpbb5jeg7g7s8t3d4aska975.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBoIGYCHGcXGeD4E5vZU10mCBvtYqOdCjs"
+          "current_key": "AIzaSyDHHZSH6NjlRFICV4_ASKP5SOw-heM_VmQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "477456322092-e775bupprdlbn7a1ihvomv1mboghh8fo.apps.googleusercontent.com",
+              "client_id": "666309150402-f26lt5ipvpbb5jeg7g7s8t3d4aska975.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

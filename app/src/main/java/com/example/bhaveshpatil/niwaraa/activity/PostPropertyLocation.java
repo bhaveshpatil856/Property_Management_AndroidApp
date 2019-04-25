@@ -451,7 +451,7 @@ public class PostPropertyLocation extends AppCompatActivity implements OnMapRead
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
         Toast.makeText(getApplicationContext(), Latitude, Toast.LENGTH_SHORT).show();
 
@@ -485,7 +485,7 @@ public class PostPropertyLocation extends AppCompatActivity implements OnMapRead
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
         //        textView.setText("coordinates are :\n" + Lat + " " + Long);
 

@@ -12,7 +12,7 @@ import com.example.bhaveshpatil.niwaraa.R;
 
 public class Confirmation extends AppCompatActivity {
 
-//    FirebaseAuth auth;
+  //  FirebaseAuth auth;
     EditText editText_otp;
     TextView textView_resend;
 //    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;

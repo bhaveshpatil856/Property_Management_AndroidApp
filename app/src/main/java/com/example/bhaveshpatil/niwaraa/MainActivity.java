@@ -67,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_notification:
                     toolbar.setTitle("Notifications");
+                    fragment = new ProfileFragment();
+                    loadFragment(fragment);
+
                   //  fragment = new Notifications();
                    // loadFragment(fragment);
                     return true;

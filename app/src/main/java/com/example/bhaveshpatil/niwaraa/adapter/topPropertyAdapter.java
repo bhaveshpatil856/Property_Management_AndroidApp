@@ -74,7 +74,7 @@ public class topPropertyAdapter extends RecyclerView.Adapter<topPropertyAdapter.
 
     @Override
     public int getItemCount() {
-        return 12;
+        return data.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
